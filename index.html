@@ -41,6 +41,7 @@ ul.plain li{padding:6px 0 6px 26px;position:relative}
 ul.plain li:before{content:"";position:absolute;left:4px;top:15px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
 footer{text-align:center;color:var(--slate);font-size:14px;margin-top:32px}
 @media (max-width:640px){table{font-size:15px}th,td{padding:9px 5px}.video-card{grid-template-columns:1fr}.video-card video{max-width:320px;margin:0 auto}h1{font-size:28px}}
+.music{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}.mbtn{appearance:none;border:2px solid var(--gold);background:#fff;color:var(--gold-dark);font:inherit;font-size:15px;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer}.mbtn[aria-pressed="true"]{background:var(--gold);color:#fff}.pick{background:#FFF4D0;border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;margin-top:6px;font-size:16px}
 </style>
 </head>
 <body>
@@ -50,12 +51,13 @@ footer{text-align:center;color:var(--slate);font-size:14px;margin-top:32px}
   <span class="date">9/18 審閱版</span>
   <h1>Aldar 阿布達比<br>房地產分享會<br><em>兩支投廣短影音</em></h1>
   <p class="sub">照 9/17 腳本製作，請您看過再上線</p>
+  <p class="pick">配樂準備了三種風格：A 優雅鋼琴、B 明亮激勵、C 時尚 Chill。影片上方按鈕可以切換試聽，請告訴我您喜歡哪一個。</p>
 </header>
 
 <section>
   <h2><span class="n">1</span>Sei Saadiyat</h2>
   <div class="video-card">
-    <video src="media/sei.mp4" poster="media/sei-poster.jpg" controls playsinline preload="metadata"></video>
+    <div><div class="music" role="group" aria-label="配樂"><button class="mbtn" aria-pressed="true" data-v="sei" data-o="A">A 優雅鋼琴</button><button class="mbtn" aria-pressed="false" data-v="sei" data-o="B">B 明亮激勵</button><button class="mbtn" aria-pressed="false" data-v="sei" data-o="C">C 時尚 Chill</button></div><video id="vid-sei" src="media/sei-A.mp4" poster="media/sei-poster.jpg" controls playsinline preload="metadata"></video></div>
     <div>
       <p class="meta">約 46 秒｜直式 9:16｜標題：在世界文化中心，擁有一席之地</p>
       <div class="copy" id="copy-sei">在世界文化中心，擁有一席之地。
@@ -89,7 +91,7 @@ Aldar 阿布達比房地產分享會
 <section>
   <h2><span class="n">2</span>Yas Canopies</h2>
   <div class="video-card">
-    <video src="media/canopies.mp4" poster="media/canopies-poster.jpg" controls playsinline preload="metadata"></video>
+    <div><div class="music" role="group" aria-label="配樂"><button class="mbtn" aria-pressed="true" data-v="canopies" data-o="A">A 優雅鋼琴</button><button class="mbtn" aria-pressed="false" data-v="canopies" data-o="B">B 明亮激勵</button><button class="mbtn" aria-pressed="false" data-v="canopies" data-o="C">C 時尚 Chill</button></div><video id="vid-canopies" src="media/canopies-A.mp4" poster="media/canopies-poster.jpg" controls playsinline preload="metadata"></video></div>
     <div>
       <p class="meta">約 43 秒｜直式 9:16｜標題：買下全世界最歡樂的島嶼入場券</p>
       <div class="copy" id="copy-can">買下全世界最歡樂的島嶼入場券。
@@ -133,6 +135,10 @@ Aldar 阿布達比房地產分享會
 <footer>元宇宙全球置產｜審閱用頁面，請勿轉傳</footer>
 </div>
 <script>
+document.querySelectorAll(".mbtn").forEach(function(b){b.addEventListener("click",function(){var v=document.getElementById("vid-"+b.dataset.v),t=v.currentTime,p=!v.paused;
+document.querySelectorAll('.mbtn[data-v="'+b.dataset.v+'"]').forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+v.src="media/"+b.dataset.v+"-"+b.dataset.o+".mp4";v.addEventListener("loadedmetadata",function(){v.currentTime=t;if(p)v.play()},{once:true});});});
+
 document.querySelectorAll("[data-copy]").forEach(function(b){
   b.addEventListener("click",function(){
     var t=document.getElementById(b.dataset.copy).innerText, old=b.textContent;
