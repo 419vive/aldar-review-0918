@@ -76,7 +76,7 @@ h1.typing .cur{opacity:1}
 @keyframes foil{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
 .pj .inner{position:relative;border-radius:8px;overflow:hidden;background:#2A1B10}
 .pj .im{position:relative;aspect-ratio:4/3;overflow:hidden;background:#2a2117}
-.pj .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transform-origin:50% 100%}
+.pj .im picture{display:contents}.pj .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transform-origin:50% 100%}
 .pj .im img.on{opacity:1;animation:kb 5.6s var(--ease) both}
 .pj .im img.off{opacity:0;transition:opacity 1.2s var(--ease)}
 @keyframes kb{from{transform:scale(1.14)}to{transform:scale(1.02)}}
@@ -146,7 +146,7 @@ h1.typing .cur{opacity:1}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hr,.sub,.kicker{opacity:1;transform:none}h1 .ch{display:inline-block;opacity:1;transform:none;filter:none}h1 .cur{display:none}.rule{width:120px}.card .info::before{transform:none}.pj .im img{transform:none;animation:none}.pj{animation:none}.pj .sp{display:none}.pj.rv{transform:none}}
 
 </style></head><body><div class="page">
-<div class="hero"><img id="hero" src="img/sei-hero.jpg" alt=""></div>
+<div class="hero"><picture><source srcset="img/sei-hero.webp" type="image/webp"><img id="hero" src="img/sei-hero.jpg" alt=""></picture></div>
 <div class="body">
  <div class="kicker">ALDAR 路演・2026</div>
  <h1 id="h1" aria-label="阿聯酋房地產分享會">阿聯酋<em>房地產分享會</em></h1>
@@ -176,13 +176,13 @@ h1.typing .cur{opacity:1}
 
  <div class="projects">
   <div class="pj rv" data-d="1"><i class="sp a"></i><i class="sp b"></i><i class="sp c"></i><i class="sp d"></i><div class="inner">
-   <div class="im" data-slides><img src="img/sei-hero.jpg" alt=""><img src="img/sei-aux1.jpg" alt=""><img src="img/sei-aux2.jpg" alt=""><img src="img/sei-aux3.jpg" alt="">
+   <div class="im" data-slides><picture><source srcset="img/sei-hero.webp" type="image/webp"><img src="img/sei-hero.jpg" alt=""></picture><picture><source srcset="img/sei-aux1.webp" type="image/webp"><img src="img/sei-aux1.jpg" alt=""></picture><picture><source srcset="img/sei-aux2.webp" type="image/webp"><img src="img/sei-aux2.jpg" alt=""></picture><picture><source srcset="img/sei-aux3.webp" type="image/webp"><img src="img/sei-aux3.jpg" alt=""></picture>
     <div class="idx"><b>01</b> / 02</div>
     <div class="cap"><div class="en">Sei <i>Saadiyat</i></div><div class="ln"></div><div class="zh">阿布達比・薩迪亞特文化區</div></div>
    </div>
   </div></div>
   <div class="pj rv" data-d="2"><i class="sp a"></i><i class="sp b"></i><i class="sp c"></i><i class="sp d"></i><div class="inner">
-   <div class="im" data-slides data-offset="2800"><img src="img/can-band0.jpg" alt=""><img src="img/can-band1.jpg" alt=""><img src="img/can-p4band0.jpg" alt="">
+   <div class="im" data-slides data-offset="2800"><picture><source srcset="img/can-sunset.webp" type="image/webp"><img src="img/can-sunset.jpg" alt=""></picture><picture><source srcset="img/can-pool.webp" type="image/webp"><img src="img/can-pool.jpg" alt=""></picture><picture><source srcset="img/can-beach.webp" type="image/webp"><img src="img/can-beach.jpg" alt=""></picture><picture><source srcset="img/can-canopy.webp" type="image/webp"><img src="img/can-canopy.jpg" alt=""></picture>
     <div class="idx"><b>02</b> / 02</div>
     <div class="cap"><div class="en">The <i>Canopies</i></div><div class="ln"></div><div class="zh">阿布達比・亞斯島北岸</div></div>
    </div>
