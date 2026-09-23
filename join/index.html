@@ -147,9 +147,9 @@ h1.typing .cur{opacity:1}
 
 
 /* ===== 同向推鏡（右上）、硬切；影片段落＝2.5D ===== */
-.pj .im video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform-origin:70% 25%;border-radius:8px;box-shadow:0 22px 40px rgba(0,0,0,.55)}
+.pj .im video{will-change:opacity;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform-origin:70% 25%;border-radius:8px;box-shadow:0 22px 40px rgba(0,0,0,.55)}
 .pj .im img{transform-origin:70% 25%}
-.pj .im img.on,.pj .im video.on{animation:dolly 2.2s linear both;animation-delay:0s}
+.pj .im img.on{animation:dolly 2.2s linear both}.pj .im video.on{animation:none;opacity:1;transform:scale(1.04) translate(0,-4%)}
 .pj .im img.off,.pj .im video.off{animation:none;opacity:0;transition:none}
 @keyframes dolly{0%{opacity:1;transform:scale(1.02) translate(0,-4%)}100%{opacity:1;transform:scale(1.09) translate(1.6%,-6%)}}
 .pj .im video.flip,.pj .im img.flip{opacity:1!important;z-index:4;transform-origin:0% 50%;animation:pageflip .55s cubic-bezier(.6,.05,.4,1) both!important}
@@ -158,15 +158,24 @@ h1.typing .cur{opacity:1}
 
 /* ===== 主圖 reel：硬切、同向右上推鏡 ===== */
 .hero .reel{position:absolute;inset:0;background:#2a2117}
-.hero .clip{position:absolute;inset:0;opacity:0}
+.hero .clip{position:absolute;inset:0;opacity:0;will-change:opacity}.hero .clip img{will-change:transform}
 .hero .clip.on{opacity:1}
 .hero .clip picture{display:contents}
 .hero .clip img,.hero .clip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;transform-origin:70% 30%;animation:none}
 .hero .clip.on img{animation:dollyH var(--d,1.8s) linear both}
-.hero .clip.on video{animation:dollyHv var(--d,2s) linear both}
+.hero .clip.on video{animation:none;transform:scale(1.03)}
 @keyframes dollyH{from{transform:scale(1.02)}to{transform:scale(1.09) translate(1.5%,-1.5%)}}
 @keyframes dollyHv{from{transform:scale(1.03)}to{transform:scale(1.07) translate(1%,-1%)}}
 @media(prefers-reduced-motion:reduce){.hero .clip.on img,.hero .clip.on video{animation:none}}
+
+/* ===== 主圖翻書：上一頁以左邊為軸翻過去 ===== */
+.hero .reel{perspective:1200px;transform-style:preserve-3d}
+.hero .clip{backface-visibility:hidden;border-radius:0}
+.hero .clip.flip{opacity:1!important;z-index:3;transform-origin:0% 50%;animation:heroflip .8s cubic-bezier(.55,.05,.35,1) both;will-change:transform,opacity}
+@keyframes heroflip{0%{transform:rotateY(0);filter:brightness(1)}50%{filter:brightness(.7)}100%{transform:rotateY(-130deg);filter:brightness(.4);opacity:0}}
+.hero .reel::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,0) 40%);opacity:0}
+.hero .reel.turning::after{animation:shade .8s ease-out both}
+@media(prefers-reduced-motion:reduce){.hero .clip.flip{animation:none;opacity:0!important}}
 </style></head><body><div class="page">
 <div class="hero"><div class="reel"><div class="clip" style="--d:2.0s" data-d="2.0"><picture><source srcset="img/sei-hero.webp" type="image/webp"><img src="img/sei-hero.jpg" alt=""></picture></div><div class="clip" style="--d:2.6s" data-d="2.6"><video muted playsinline preload="auto" poster="vid/sei-sunset.jpg" src="vid/sei-sunset.mp4"></video></div><div class="clip" style="--d:1.8s" data-d="1.8"><picture><source srcset="img/can-sunset.webp" type="image/webp"><img src="img/can-sunset.jpg" alt=""></picture></div><div class="clip" style="--d:2.8s" data-d="2.8"><video muted playsinline preload="auto" poster="vid/can-lagoon.jpg" src="vid/can-lagoon.mp4"></video></div><div class="clip" style="--d:1.6s" data-d="1.6"><picture><source srcset="img/sei-aux2.webp" type="image/webp"><img src="img/sei-aux2.jpg" alt=""></picture></div><div class="clip" style="--d:2.7s" data-d="2.7"><video muted playsinline preload="auto" poster="vid/sei-entrance.jpg" src="vid/sei-entrance.mp4"></video></div><div class="clip" style="--d:1.6s" data-d="1.6"><picture><source srcset="img/can-pool.webp" type="image/webp"><img src="img/can-pool.jpg" alt=""></picture></div><div class="clip" style="--d:1.8s" data-d="1.8"><video muted playsinline preload="auto" poster="vid/can-balcony.jpg" src="vid/can-balcony.mp4"></video></div><div class="clip" style="--d:1.6s" data-d="1.6"><picture><source srcset="img/sei-aux1.webp" type="image/webp"><img src="img/sei-aux1.jpg" alt=""></picture></div><div class="clip" style="--d:1.8s" data-d="1.8"><video muted playsinline preload="auto" poster="vid/sei-street.jpg" src="vid/sei-street.mp4"></video></div><div class="clip" style="--d:1.8s" data-d="1.8"><picture><source srcset="img/can-beach.webp" type="image/webp"><img src="img/can-beach.jpg" alt=""></picture></div><div class="clip" style="--d:2.8s" data-d="2.8"><video muted playsinline preload="auto" poster="vid/can-fireworks.jpg" src="vid/can-fireworks.mp4"></video></div><div class="clip" style="--d:1.6s" data-d="1.6"><picture><source srcset="img/can-canopy.webp" type="image/webp"><img src="img/can-canopy.jpg" alt=""></picture></div><div class="clip" style="--d:1.9s" data-d="1.9"><video muted playsinline preload="auto" poster="vid/sei-court.jpg" src="vid/sei-court.mp4"></video></div><div class="clip" style="--d:1.8s" data-d="1.8"><video muted playsinline preload="auto" poster="vid/can-towers.jpg" src="vid/can-towers.mp4"></video></div></div></div>
 <div class="body">
@@ -222,29 +231,39 @@ h1.typing .cur{opacity:1}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.15});
   document.querySelectorAll('.rv,.hr').forEach(function(el){io.observe(el);});
 
-  /* 兩案幻燈片：硬切＋同向推鏡＋翻頁 */
+  /* 兩案幻燈片：硬切＋同向推鏡＋翻頁；提前起播、離屏暫停 */
   document.querySelectorAll('[data-slides]').forEach(function(box){
     var imgs=[].slice.call(box.querySelectorAll('img,video')),n=imgs.length,i=0,dots=document.createElement('div');dots.className='dots';
     imgs.forEach(function(){dots.appendChild(document.createElement('i'));});box.appendChild(dots);
-    var shade=document.createElement('div');shade.className='shade';box.appendChild(shade);var prev=-1;
+    var shade=document.createElement('div');shade.className='shade';box.appendChild(shade);var prev=-1,timer=null,warmT=null,vis=false;
+    function warm(el){if(el&&el.tagName==='VIDEO'){try{el.currentTime=0;el.play().catch(function(){});}catch(e){}}}
     function show(k){imgs.forEach(function(im,j){im.classList.remove('flip');im.classList.toggle('on',j===k);im.classList.toggle('off',j!==k);
-        if(im.tagName==='VIDEO'){if(j===k){try{im.currentTime=0;im.play().catch(function(){});}catch(e){}}else{im.pause();}}});
+        if(im.tagName==='VIDEO'){if(j===k){if(im.paused)warm(im);}else if(j!==(k+1)%n){im.pause();}}});
       if(prev>=0&&!reduce){imgs[prev].classList.remove('off');imgs[prev].classList.add('flip');box.classList.remove('turning');void box.offsetWidth;box.classList.add('turning');(function(pi){setTimeout(function(){imgs[pi].classList.remove('flip');imgs[pi].classList.add('off');},600);})(prev);}
       prev=k;dots.childNodes.forEach(function(d,j){d.classList.toggle('on',j===k);});
-      box.classList.remove('glint');void box.offsetWidth;box.classList.add('glint');}
+      box.classList.remove('glint');void box.offsetWidth;box.classList.add('glint');
+      clearTimeout(warmT);warmT=setTimeout(function(){warm(imgs[(k+1)%n]);},1700);}
     show(0);if(reduce||n<2)return;
-    var every=+(box.dataset.every||2200);
-    setTimeout(function(){setInterval(function(){i=(i+1)%n;show(i);},every);},+(box.dataset.offset||0));
+    var every=+(box.dataset.every||2200),off=+(box.dataset.offset||0);
+    function start(){clearInterval(timer);timer=setInterval(function(){i=(i+1)%n;show(i);},every);}
+    new IntersectionObserver(function(es){es.forEach(function(e){vis=e.isIntersecting;if(vis){setTimeout(start,off);}else{clearInterval(timer);clearTimeout(warmT);imgs.forEach(function(im){if(im.tagName==='VIDEO')im.pause();});}});},{threshold:.2}).observe(box);
   });
-
-  /* 主圖 reel */
-  (function(){var reel=document.querySelector('.hero .reel');if(!reel)return;var clips=[].slice.call(reel.querySelectorAll('.clip')),i=-1;
-    function next(){if(i>=0){clips[i].classList.remove('on');var pv=clips[i].querySelector('video');if(pv)pv.pause();}
-      i=(i+1)%clips.length;var c=clips[i];c.classList.add('on');var v=c.querySelector('video');if(v){try{v.currentTime=0;v.play().catch(function(){});}catch(e){}}
+  /* 主圖 reel：提前起播、播完當幀切換、離屏暫停 */
+  (function(){var reel=document.querySelector('.hero .reel');if(!reel)return;var clips=[].slice.call(reel.querySelectorAll('.clip')),i=-1,t=null,pre=null,active=true;
+    function vid(c){return c.querySelector('video');}
+    function warm(c){var v=vid(c);if(!v)return;try{v.currentTime=0;v.play().catch(function(){});}catch(e){}}
+    function next(){clearTimeout(t);clearTimeout(pre);if(!active)return;
+      if(i>=0){var pc=clips[i];clips.forEach(function(x){if(x!==pc)x.classList.remove('flip');});pc.classList.remove('on');pc.classList.add('flip');reel.classList.remove('turning');void reel.offsetWidth;reel.classList.add('turning');(function(el){setTimeout(function(){el.classList.remove('flip');var pv=vid(el);if(pv)pv.pause();},850);})(pc);}
+      i=(i+1)%clips.length;var c=clips[i];c.classList.add('on');
+      var v=vid(c);if(v&&v.paused){warm(c);}
       var im=c.querySelector('img');if(im){im.style.animation='none';void im.offsetWidth;im.style.animation='';}
-      setTimeout(next,parseFloat(c.dataset.d)*1000);}
+      var d=parseFloat(c.dataset.d)*1000;var nx=clips[(i+1)%clips.length];
+      pre=setTimeout(function(){warm(nx);},Math.max(0,d-450));
+      if(v){v.onended=function(){next();};t=setTimeout(next,d+400);}else{t=setTimeout(next,d);}}
     if(reduce){clips[0].classList.add('on');return;}
-    clips.forEach(function(c){var v=c.querySelector('video');if(v)v.load();});next();})();
+    clips.forEach(function(c){var v=vid(c);if(v){v.load();v.muted=true;}});
+    new IntersectionObserver(function(es){es.forEach(function(e){active=e.isIntersecting;if(active){next();}else{clearTimeout(t);clearTimeout(pre);clips.forEach(function(c){var v=vid(c);if(v)v.pause();});}});},{threshold:.05}).observe(reel);
+  })();
   var rule=document.getElementById('rule'),sub=document.getElementById('sub'),h1=document.getElementById('h1');
   if(reduce){rule.classList.add('on');sub.classList.add('on');return;}
   /* 大標打字機：逐字拆開，順序落定，游標閃爍 */
