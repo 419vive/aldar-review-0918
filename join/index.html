@@ -145,6 +145,16 @@ h1.typing .cur{opacity:1}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hr,.sub,.kicker{opacity:1;transform:none}h1 .ch{display:inline-block;opacity:1;transform:none;filter:none}h1 .cur{display:none}.rule{width:120px}.card .info::before{transform:none}.pj .im img{transform:none;animation:none}.pj{animation:none}.pj .sp{display:none}.pj.rv{transform:none}}
 
+
+/* ===== 同向推鏡（右上）、硬切；影片段落＝2.5D ===== */
+.pj .im video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform-origin:70% 25%;border-radius:8px;box-shadow:0 22px 40px rgba(0,0,0,.55)}
+.pj .im img{transform-origin:70% 25%}
+.pj .im img.on,.pj .im video.on{animation:dolly 2.2s linear both;animation-delay:0s}
+.pj .im img.off,.pj .im video.off{animation:none;opacity:0;transition:none}
+@keyframes dolly{0%{opacity:1;transform:scale(1.02) translate(0,-4%)}100%{opacity:1;transform:scale(1.09) translate(1.6%,-6%)}}
+.pj .im video.flip,.pj .im img.flip{opacity:1!important;z-index:4;transform-origin:0% 50%;animation:pageflip .55s cubic-bezier(.6,.05,.4,1) both!important}
+@keyframes pageflip{0%{transform:scale(1.09) translate(1.6%,-6%) rotateY(0);filter:brightness(1)}100%{transform:scale(1.09) translate(1.6%,-6%) rotateY(-120deg);filter:brightness(.5);opacity:0}}
+.pj .im.turning .shade{animation:shade .55s ease-out both}
 </style></head><body><div class="page">
 <div class="hero"><picture><source srcset="img/sei-hero.webp" type="image/webp"><img id="hero" src="img/sei-hero.jpg" alt=""></picture></div>
 <div class="body">
@@ -176,13 +186,13 @@ h1.typing .cur{opacity:1}
 
  <div class="projects">
   <div class="pj rv" data-d="1"><i class="sp a"></i><i class="sp b"></i><i class="sp c"></i><i class="sp d"></i><div class="inner">
-   <div class="im" data-slides><picture><source srcset="img/sei-hero.webp" type="image/webp"><img src="img/sei-hero.jpg" alt=""></picture><picture><source srcset="img/sei-aux1.webp" type="image/webp"><img src="img/sei-aux1.jpg" alt=""></picture><picture><source srcset="img/sei-aux2.webp" type="image/webp"><img src="img/sei-aux2.jpg" alt=""></picture><picture><source srcset="img/sei-aux3.webp" type="image/webp"><img src="img/sei-aux3.jpg" alt=""></picture>
+   <div class="im" data-slides data-every="2200"><video muted playsinline preload="auto" poster="vid/sei-sunset.jpg" src="vid/sei-sunset.mp4" data-v></video><picture><source srcset="img/sei-hero.webp" type="image/webp"><img src="img/sei-hero.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/sei-entrance.jpg" src="vid/sei-entrance.mp4" data-v></video><picture><source srcset="img/sei-aux1.webp" type="image/webp"><img src="img/sei-aux1.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/sei-street.jpg" src="vid/sei-street.mp4" data-v></video><picture><source srcset="img/sei-aux2.webp" type="image/webp"><img src="img/sei-aux2.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/sei-court.jpg" src="vid/sei-court.mp4" data-v></video><picture><source srcset="img/sei-aux3.webp" type="image/webp"><img src="img/sei-aux3.jpg" alt=""></picture>
     <div class="idx"><b>01</b> / 02</div>
     <div class="cap"><div class="en">Sei <i>Saadiyat</i></div><div class="ln"></div><div class="zh">阿布達比・薩迪亞特文化區</div></div>
    </div>
   </div></div>
   <div class="pj rv" data-d="2"><i class="sp a"></i><i class="sp b"></i><i class="sp c"></i><i class="sp d"></i><div class="inner">
-   <div class="im" data-slides data-offset="2800"><picture><source srcset="img/can-sunset.webp" type="image/webp"><img src="img/can-sunset.jpg" alt=""></picture><picture><source srcset="img/can-pool.webp" type="image/webp"><img src="img/can-pool.jpg" alt=""></picture><picture><source srcset="img/can-beach.webp" type="image/webp"><img src="img/can-beach.jpg" alt=""></picture><picture><source srcset="img/can-canopy.webp" type="image/webp"><img src="img/can-canopy.jpg" alt=""></picture>
+   <div class="im" data-slides data-offset="1100" data-every="2200"><video muted playsinline preload="auto" poster="vid/can-balcony.jpg" src="vid/can-balcony.mp4" data-v></video><picture><source srcset="img/can-sunset.webp" type="image/webp"><img src="img/can-sunset.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/can-lagoon.jpg" src="vid/can-lagoon.mp4" data-v></video><picture><source srcset="img/can-pool.webp" type="image/webp"><img src="img/can-pool.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/can-towers.jpg" src="vid/can-towers.mp4" data-v></video><picture><source srcset="img/can-beach.webp" type="image/webp"><img src="img/can-beach.jpg" alt=""></picture><video muted playsinline preload="auto" poster="vid/can-fireworks.jpg" src="vid/can-fireworks.mp4" data-v></video><picture><source srcset="img/can-canopy.webp" type="image/webp"><img src="img/can-canopy.jpg" alt=""></picture>
     <div class="idx"><b>02</b> / 02</div>
     <div class="cap"><div class="en">The <i>Canopies</i></div><div class="ln"></div><div class="zh">阿布達比・亞斯島北岸</div></div>
    </div>
@@ -200,17 +210,19 @@ h1.typing .cur{opacity:1}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.15});
   document.querySelectorAll('.rv,.hr').forEach(function(el){io.observe(el);});
 
-  /* 兩案幻燈片 */
+  /* 兩案幻燈片：硬切＋同向推鏡＋翻頁 */
   document.querySelectorAll('[data-slides]').forEach(function(box){
-    var imgs=box.querySelectorAll('img'),n=imgs.length,i=0,dots=document.createElement('div');dots.className='dots';
+    var imgs=[].slice.call(box.querySelectorAll('img,video')),n=imgs.length,i=0,dots=document.createElement('div');dots.className='dots';
     imgs.forEach(function(){dots.appendChild(document.createElement('i'));});box.appendChild(dots);
     var shade=document.createElement('div');shade.className='shade';box.appendChild(shade);var prev=-1;
-    function show(k){imgs.forEach(function(im,j){im.classList.remove('flip');im.classList.toggle('on',j===k);im.classList.toggle('off',j!==k);});
-      if(prev>=0&&!reduce){imgs[prev].classList.remove('off');imgs[prev].classList.add('flip');box.classList.remove('turning');void box.offsetWidth;box.classList.add('turning');setTimeout(function(){imgs[prev===k?-1:prev]&&imgs[prev].classList.remove('flip');},1300);}
+    function show(k){imgs.forEach(function(im,j){im.classList.remove('flip');im.classList.toggle('on',j===k);im.classList.toggle('off',j!==k);
+        if(im.tagName==='VIDEO'){if(j===k){try{im.currentTime=0;im.play().catch(function(){});}catch(e){}}else{im.pause();}}});
+      if(prev>=0&&!reduce){imgs[prev].classList.remove('off');imgs[prev].classList.add('flip');box.classList.remove('turning');void box.offsetWidth;box.classList.add('turning');(function(pi){setTimeout(function(){imgs[pi].classList.remove('flip');imgs[pi].classList.add('off');},600);})(prev);}
       prev=k;dots.childNodes.forEach(function(d,j){d.classList.toggle('on',j===k);});
       box.classList.remove('glint');void box.offsetWidth;box.classList.add('glint');}
     show(0);if(reduce||n<2)return;
-    setTimeout(function(){setInterval(function(){i=(i+1)%n;show(i);},5600);},+(box.dataset.offset||0));
+    var every=+(box.dataset.every||2200);
+    setTimeout(function(){setInterval(function(){i=(i+1)%n;show(i);},every);},+(box.dataset.offset||0));
   });
   var rule=document.getElementById('rule'),sub=document.getElementById('sub'),h1=document.getElementById('h1');
   if(reduce){rule.classList.add('on');sub.classList.add('on');return;}
