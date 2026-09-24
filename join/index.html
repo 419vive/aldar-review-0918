@@ -76,11 +76,16 @@ h1.typing .cur{opacity:1}
 @keyframes foil{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
 .pj .inner{position:relative;border-radius:8px;overflow:hidden;background:#2A1B10}
 .pj .im{position:relative;aspect-ratio:4/3;overflow:hidden;background:#2a2117}
+/* 9/24 修：Ishtar「咖啡色和墨綠都不是討人喜歡的顏色」——兩案原本共用同一組深咖啡色底＋78%不透明黑色遮罩，
+   照片被壓到快看不見。Sei 用建築本身的暖木質色（色相31°，同 9/22 定版），Canopies 用潟湖的藍（色相199°）。 */
+.pj[data-d="1"] .inner,.pj[data-d="1"] .im{background:#3A2E22}
+.pj[data-d="2"] .inner,.pj[data-d="2"] .im{background:#0B4358}
 .pj .im picture{display:contents}.pj .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);transform-origin:50% 100%}
 .pj .im img.on{opacity:1;animation:kb 5.6s var(--ease) both}
 .pj .im img.off{opacity:0;transition:opacity 1.2s var(--ease)}
 @keyframes kb{from{transform:scale(1.14)}to{transform:scale(1.02)}}
-.pj .im::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,27,16,.15) 0%,rgba(42,27,16,0) 35%,rgba(42,27,16,.78) 100%);z-index:1;pointer-events:none}
+.pj .im::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,27,16,.12) 0%,rgba(42,27,16,0) 35%,rgba(42,27,16,.42) 100%);z-index:1;pointer-events:none}
+.pj[data-d="2"] .im::before{background:linear-gradient(180deg,rgba(6,40,49,.12) 0%,rgba(6,40,49,0) 35%,rgba(6,40,49,.42) 100%)}
 .pj .im::after{content:"";position:absolute;top:-30%;bottom:-30%;left:-45%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,244,208,0) 30%,rgba(255,244,208,.6) 50%,rgba(255,176,0,.4) 60%,transparent);transform:skewX(-20deg);pointer-events:none;opacity:0;z-index:2}
 .pj .im.glint::after{animation:glint 1.3s var(--ease) both}
 @keyframes glint{0%{left:-45%;opacity:0}15%{opacity:1}100%{left:125%;opacity:0}}
